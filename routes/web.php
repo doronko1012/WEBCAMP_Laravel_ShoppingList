@@ -24,6 +24,7 @@ Route::post('/login', [AuthController::Class, 'login']);
 // 認可処理（middlewareを挟むことで認可を行うコントローラーへのアクションメソッド）
 Route::middleware(['auth'])->group(function () {
     Route::get('/shopping_list/list', [ListController::class, 'list']);
+    Route::post('/shopping_list/register', [ListController::class, 'register']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 

@@ -5,9 +5,22 @@
 
 {{-- メインコンテンツ --}}
 @section('contents')
-        <h1>「買うもの」の登録（未実装）</h1>
-            <form action="./top.html" method="post">
-                「買うもの」名:<input><br>
+        <h1>「買うもの」の登録</h1>
+            @if (session('front.shopping_list_register_success') == true)
+                「買うもの」を登録しました！！<br>
+            @endif
+        
+             @if ($errors->any())
+                <div>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+                </div>
+            @endif
+
+            <form action="/shopping_list/register" method="post">
+                @csrf
+                「買うもの」名:<input type="text" name="name"><br>
                 <button>「買うもの」を登録する</button>
             </form>
 
@@ -17,25 +30,16 @@
         <tr>
             <th>登録日
             <th>「買うもの」名
+        @foreach ($list as $shopping_list)
         <tr>
-            <td>2022/01/01
-            <td>豚肉
+            <td>{{ $shopping_list->created_at }}
+            <td>{{ $shopping_list->name }}
             <td><form action="./top.html"><button>完了</button></form>
             <td></td>
             <td><form action="./top.html"><button>削除</button></form>
-        <tr>
-            <td>2022/01/01
-            <td>たまご
-            <td><form action="./top.html"><button>完了</button></form>
-            <td></td>
-            <td><form action="./top.html"><button>削除</button></form>
-        <tr>
-            <td>2022/01/01
-            <td>だいこん
-            <td><form action="./top.html"><button>完了</button></form>
-            <td></td>
-            <td><form action="./top.html"><button>削除</button></form>
+        @endforeach
         </table>
+        
         <!-- ページネーション -->
         現在 1 ページ目<br>
         <a href="./top.html">最初のページ（未実装）</a> / 

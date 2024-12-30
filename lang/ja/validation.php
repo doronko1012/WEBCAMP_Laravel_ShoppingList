@@ -190,6 +190,7 @@ return [
 
     'attributes' => [
         'password' => 'パスワード',
+        'name' => '買うもの',
     ],
 
 ];
