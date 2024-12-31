@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_lists', function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 128)->comment('買うもの');
-            $table->unsignedBigInteger('user_id')->comment('この買いものリストの所有者');
-            $table->foreign('user_id')->references('id')->on('users'); // 外部キー制約
+            $table->string('login_id', 255)->unique();
+            $table->string('password', 255);
+            //$table->timestamps();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+            //
+            $table->collation = 'utf8mb4_bin';
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopping_lists');
+        Schema::dropIfExists('admin_users');
     }
 };

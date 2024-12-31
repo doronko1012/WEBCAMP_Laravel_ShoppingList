@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_lists', function (Blueprint $table) {
-            $table->id();
+        Schema::create('completed_shopping_lists', function (Blueprint $table) {
+            $table->unsignedInteger('id');
             $table->string('name', 128)->comment('買うもの');
             $table->unsignedBigInteger('user_id')->comment('この買いものリストの所有者');
             $table->foreign('user_id')->references('id')->on('users'); // 外部キー制約
-            $table->dateTime('created_at')->useCurrent();
+            //$table->timestamps();
+            $table->dateTime('created_at')->useCurrent()->comment('買いもの完了日時');
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+            //
+            $table->primary('id');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopping_lists');
+        Schema::dropIfExists('completed_shopping_lists');
     }
 };

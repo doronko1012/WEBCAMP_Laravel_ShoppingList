@@ -9,7 +9,16 @@
             @if (session('front.shopping_list_register_success') == true)
                 「買うもの」を登録しました！！<br>
             @endif
-        
+            @if (session('front.shopping_list_delete_success') == true)
+                「買うもの」を削除しました！！<br>
+            @endif
+            @if (session('front.shopping_list_completed_success') == true)
+                「買うもの」を完了にしました！！<br>
+            @endif
+            @if (session('front.shopping_list_completed_failure') == true)
+                「買うもの」の完了に失敗しました！！<br>
+            @endif
+
              @if ($errors->any())
                 <div>
                 @foreach ($errors->all() as $error)
@@ -25,7 +34,7 @@
             </form>
 
         <h1>「買うもの」一覧（未実装）</h1>
-        <a href="./top.html">購入済み「買うもの」一覧（未実装）</a><br>
+        <a href="/completed_shopping_list/list">購入済み「買うもの」一覧（未実装）</a><br>
         <table border="1">
         <tr>
             <th>登録日
@@ -34,9 +43,25 @@
         <tr>
             <td>{{ $shopping_list->created_at }}
             <td>{{ $shopping_list->name }}
-            <td><form action="./top.html"><button>完了</button></form>
+            <td>
+            <form action="{{ route('complete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
+                     @csrf 
+                     <button onclick='return confirm("この「買いもの」を「完了」にします。よろしいですか？");' >完了</button>
+            </form>              
+            
+            
+            
+            <!-- <form action="./top.html"><button>完了</button></form> -->
             <td></td>
-            <td><form action="./top.html"><button>削除</button></form>
+            <td>
+            <form action="{{ route('delete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
+                @csrf
+                @method("DELETE")
+                <button onclick='return confirm("この「買うもの」を「削除」します。よろしいですか？");'>削除</button>
+            </form>
+
+
+            <!-- <form><button onclick='return confirm("この「買うもの」を「削除」します。よろしいですか？");'>削除</button></form> -->
         @endforeach
         </table>
 
