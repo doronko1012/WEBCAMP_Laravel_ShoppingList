@@ -7,6 +7,7 @@ use App\Http\Controllers\CompletedShoppingListController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\UserController as AdminUserController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,10 @@ Route::prefix('/admin')->group(function () {
     Route::get('', [AdminAuthController::class, 'index'])->name('admin.index');
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
     Route::middleware(['auth:admin'])->group(function () {
+        // 認可処理
         Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
+        Route::get('/user/list', [AdminUserController::class, 'list'])->name('admin.user.list');
+        // ログアウト
         Route::get('/logout', [AdminAuthController::class, 'logout']);
     });
 });
