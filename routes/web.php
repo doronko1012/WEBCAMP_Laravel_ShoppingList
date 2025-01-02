@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\CompletedShoppingListController;
-use App\Http\Controllers\TestController;
+//use App\Http\Controllers\TestController;
+
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController; 
@@ -25,14 +27,17 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 Route::get('/', [AuthController::Class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::Class, 'login']);
 
+// 会員登録
+Route::prefix('/user')->group(function () {
+    Route::get('/register', [UserController::class, 'index'])->name('front.user.register');
+    Route::post('/register', [UserController::class, 'register'])->name('front.user.register.post');
+});
+
 // 認可処理（middlewareを挟むことで認可を行うコントローラーへのアクションメソッド）
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/shopping_list')->group(function () {
         Route::get('/list', [ListController::class, 'list']);
         Route::post('/register', [ListController::class, 'register']);
-        //Route::get('/edit/{task_id}', [ListController::class, 'edit'])->whereNumber('list_id')->name('edit');
-        //Route::put('/edit/{task_id}', [ListController::class, 'editSave'])->whereNumber('list_id')->name('edit_save');
-        // Route::get('/detail/{shopping_list_id}', [ListController::class, 'detail'])->whereNumber('shopping_list_id')->name('detail');
         Route::delete('/delete/{shopping_list_id}', [ListController::class, 'delete'])->whereNumber('shopping_list_id')->name('delete');
         Route::post('/complete/{shopping_list_id}', [ListController::class, 'complete'])->whereNumber('shopping_list_id')->name('complete');
     });

@@ -2,7 +2,7 @@
 @extends('layout')
 {{-- メインコンテンツ --}}
 @section('contents')
-    <h1>indexログイン</h1>
+    <h1>ログイン</h1>
     @if ($errors->any())
             <div>
             @foreach ($errors->all() as $error)
@@ -16,4 +16,5 @@
         パスワード：<input type="password" name="password"><br>
         <button>ログインする</button>
     </form>
+    <a href="/user/register">会員登録</a>
 @endsection
