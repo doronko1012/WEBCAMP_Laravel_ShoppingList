@@ -59,7 +59,3 @@ Route::prefix('/admin')->group(function () {
         Route::get('/logout', [AdminAuthController::class, 'logout']);
     });
 });
-
-// テスト入力
-Route::get('/test', [TestController::class, 'index']);
-Route::post('/test/input', [TestController::class, 'input']);

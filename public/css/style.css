@@ -1,0 +1,10 @@
+table, th, td{
+    border: double 1px #333;
+    /* outline: solid 1px #000000; */
+    /* outline-offset: 1px; */
+    margin:2px;
+  }
+
+  .space{
+    width: 10px;
+  }
