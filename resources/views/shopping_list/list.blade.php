@@ -29,7 +29,7 @@
 
             <form action="/shopping_list/register" method="post">
                 @csrf
-                「買うもの」名:<input type="text" name="name"><br>
+                「買うもの」名:<input type="text" name="shoppinglist"><br>
                 <button>「買うもの」を登録する</button>
             </form>
 
@@ -43,7 +43,7 @@
         @foreach ($list as $shopping_list)
         <tr>
             <td>{{ $shopping_list->created_at->format('Y/m/d') }}
-            <td>{{ $shopping_list->name }}
+            <td>{{ $shopping_list->shoppinglist }}
             <td>
             <form action="{{ route('complete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
                      @csrf 

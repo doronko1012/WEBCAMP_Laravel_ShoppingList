@@ -191,7 +191,8 @@ return [
 
     'attributes' => [
         'password' => 'パスワード',
-        'name' => '買うもの',
+        'shoppinglist' => '買うもの',
+        'name' => '名前',
     ],
 
 ];

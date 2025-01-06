@@ -15,7 +15,7 @@
             <th>購入日
         @foreach ($list as $shopping_list)
         <tr>
-            <td>{{ $shopping_list->name }}
+            <td>{{ $shopping_list->shoppinglist }}
             <td>{{ $shopping_list->created_at->format('Y/m/d') }}
         @endforeach
         </table>

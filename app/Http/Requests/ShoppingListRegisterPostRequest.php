@@ -15,7 +15,7 @@ class ShoppingListRegisterPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:128'],
+            'shoppinglist' => ['required', 'max:128'],
         ];
     }
 }
