@@ -9,14 +9,14 @@
         <h1>購入済み「買うもの」一覧</h1>
         <a href="/shopping_list/list">「買うもの」一覧に戻る</a><br>
 
-        <table border="1">
+        <table border="1" style="border: double 1px #333; margin:2px;">
         <tr>
-            <th>「買うもの」名
-            <th>購入日
+            <th style="border: double 1px #333; margin:2px;">「買うもの」名
+            <th style="border: double 1px #333; margin:2px;">購入日
         @foreach ($list as $shopping_list)
         <tr>
-            <td>{{ $shopping_list->shoppinglist }}
-            <td>{{ $shopping_list->created_at->format('Y/m/d') }}
+            <td style="border: double 1px #333; margin:2px;">{{ $shopping_list->shoppinglist }}
+            <td style="border: double 1px #333; margin:2px;">{{ $shopping_list->created_at->format('Y/m/d') }}
         @endforeach
         </table>
 

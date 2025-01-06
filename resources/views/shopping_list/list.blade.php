@@ -35,23 +35,23 @@
 
         <h1>「買うもの」一覧</h1>
         <a href="/completed_shopping_list/list">購入済み「買うもの」一覧</a><br>
-        <table>
+        <table style="border: double 1px #333; margin:2px;">
         <tr>
-            <th>登録日
-            <th>「買うもの」名
+            <th style="border: double 1px #333; margin:2px;">登録日
+            <th style="border: double 1px #333; margin:2px;">「買うもの」名
  
         @foreach ($list as $shopping_list)
         <tr>
-            <td>{{ $shopping_list->created_at->format('Y/m/d') }}
-            <td>{{ $shopping_list->shoppinglist }}
-            <td>
+            <td style="border: double 1px #333; margin:2px;">{{ $shopping_list->created_at->format('Y/m/d') }}
+            <td style="border: double 1px #333; margin:2px;">{{ $shopping_list->shoppinglist }}
+            <td style="border: double 1px #333; margin:2px;">
             <form action="{{ route('complete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
                      @csrf 
                      <button onclick='return confirm("この「買いもの」を「完了」にします。よろしいですか？");' >完了</button>
             </form>
             </td>
-            <td class="space"></td>
-            <td>
+            <td class="space" style="border: double 1px #333; margin:2px; width: 10px;"></td>
+            <td  style="border: double 1px #333; margin:2px;">
             <form action="{{ route('delete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
                 @csrf
                 @method("DELETE")
