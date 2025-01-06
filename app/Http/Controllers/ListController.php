@@ -23,7 +23,7 @@ class ListController extends Controller
 
         // 一覧の取得
         $list = ShoppingListModel::where('user_id', Auth::id())
-                                    ->orderBy('created_at', 'DESC')
+                                    ->orderBy('shoppinglist', 'ASC')
                                     ->paginate($per_page);
                                     //->get();
         /*
